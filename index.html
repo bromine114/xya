@@ -1,0 +1,518 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title title="bromine制作的导航和应援网站">bobo和他的朋友们</title>
+    <style>
+        /* 这里可以写一些全局的样式 */
+        body {
+            /* 这里设置背景图片，你可以根据自己的图片尺寸和位置来调整 */
+            background-image: url("assets/background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            /* 这里设置一个容器来放置所有的内容，你可以根据自己的喜好来调整宽度和高度 */
+            width: 100%;
+            min-height: 100vh;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-bar {
+            /* 这里设置顶部栏的样式，你可以根据自己的喜好来调整颜色和透明度 */
+            width: 100%;
+            height: 80px;
+            background-color: rgba(238, 108, 186, 0.308);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            /* 这里设置logo的样式，你可以根据自己的图片尺寸和位置来调整 */
+            width: 80px;
+            height: 80px;
+            margin-left: 0px;
+        }
+
+        .welcome {
+            /* 这里设置welcome文字的样式，你可以根据自己的喜好来调整字体和颜色 */
+            font-family: "Brush Script MT", cursive;
+            font-size: 40px;
+            color: white;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main {
+            /* 这里设置主体部分的样式，你可以根据自己的喜好来调整布局和间距 */
+            width: 100%;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #search-form {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #search-form input[type="text"] {
+            padding: 5px;
+            width: 300px;
+        }
+
+        #search-form input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        .left-side {
+            /* 这里设置左侧区域的样式，你可以根据自己的喜好来调整宽度和高度 */
+            width: 33%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar {
+            /* 这里设置头像的样式，你可以根据自己的图片尺寸和位置来调整 */
+            width: 250px;
+            height: 250px;
+            margin-left: -150px;
+            border-radius: 50%;
+            margin-top: -150px;
+        }
+
+        .right-side {
+            /* 这里设置右侧区域的样式，你可以根据自己的喜好来调整宽度和高度 */
+            width: 67%;
+            margin-left: -200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-player {
+            /* 这里设置音乐播放器区域的样式，你可以根据自己的喜好来调整颜色和透明度 */
+            width: 60%;
+            height: 80px;
+            background-color: rgba(229, 146, 221, 0.708);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .music-poster {
+            /* 这里设置音乐海报的样式，你可以根据自己的图片尺寸和位置来调整 */
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        .music-name {
+            /* 这里设置音乐名称的样式，你可以根据自己的喜好来调整字体和颜色 */
+            font-family: "Arial", sans-serif;
+            font-size: 16px;
+            color: white;
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .play-button {
+            /* 这里设置播放按钮的样式，你可以根据自己的喜好来调整大小和位置 */
+            width: 40px;
+            height: 40px;
+        }
+
+        .progress-bar {
+            /* 这里设置进度条的样式，你可以根据自己的喜好来调整颜色和高度 */
+            width: 50%;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+        }
+
+        .progress {
+            /* 这里设置进度条进度的样式，你可以根据自己的喜好来调整颜色和高度 */
+            width: 0;
+            height: 100%;
+            background-color: white;
+        }
+
+        .volume-button {
+            position: relative;
+        }
+
+        .volume-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .volume-button-container {
+            position: relative;
+            display: inline-block;
+            /* 或者根据需要使用其他 display 属性 */
+        }
+
+
+        .volume-popup {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            background-color: rgba(229, 146, 221, 0.708);
+            border-radius: 5px;
+            padding: 5px;
+            display: none;
+        }
+
+        .volume-button-container:hover .volume-popup {
+            display: block;
+        }
+
+        .volume-slider {
+            width: 95px;
+            /* 或者你想要的宽度 */
+            height: 5px;
+            /* 或者你想要的高度 */
+        }
+
+
+        .volume-icon:hover+.volume-popup {
+            display: block;
+        }
+
+
+        .navigation {
+            /* 这里设置导航区域的样式，你可以根据自己的喜好来调整布局和间距 */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            margin-left: 70px;
+        }
+
+        .circle {
+            /* 这里设置每个圆形的样式，你可以根据自己的喜好来调整大小和颜色 */
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 100px;
+        }
+
+        .icon {
+            /* 这里设置每个图标的样式，你可以根据自己的图片尺寸和位置来调整 */
+            width: 100px;
+            height: 100px;
+            margin-top: 25px;
+        }
+
+        .name {
+            /* 这里设置每个网站名字的样式，你可以根据自己的喜好来调整字体和颜色 */
+            font-family: "Arial", sans-serif;
+            font-size: 16px;
+            color: white;
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        .footer {
+            /* 这里设置底部栏的样式，你可以根据自己的喜好来调整颜色和高度 */
+            width: 100%;
+            height: 20px;
+            background-color: rgba(238, 108, 186, 0.308);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .text {
+            /* 这里设置底部文字的样式，你可以根据自己的喜好来调整字体和颜色 */
+            font-family: "Arial", sans-serif;
+            font-size: 14px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+
+        .time {
+            font-family: "Arial", sans-serif;
+            font-size: 12px;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .img {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-image: url('gif/nvjiang.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            border: 8px solid rgba(0, 0, 0, 0);
+            pointer-events: none;
+        }
+
+        .new-element {
+            position: absolute;
+            width: 150px;
+            /* 调整宽度以适应你的需要 */
+            height: 150px;
+            /* 调整高度以适应你的需要 */
+            bottom: 20px;
+            left: 20px;
+            /* 左下角的位置 */
+        }
+
+        .left-side .new-element {
+            right: 20px;
+            /* 右下角的位置 */
+            left: auto;
+        }
+
+        .image-container {
+            position: relative;
+            width: 500px;
+            /* 设置容器宽度，可以调整以改变比例 */
+            height: 500px;
+            /* 设置容器高度，可以根据需要保持与图片相同的比例 */
+            overflow: hidden;
+        }
+
+        .small-gif {
+            width: 100%;
+            height: 100%;
+            border: none;
+            /* 移除边框 */
+            outline: none;
+            /* 移除外部轮廓 */
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <img src="assets/logo.png" class="logo">
+            <span class="welcome">Welcome to Bromine's blog!</span>
+        </div>
+        <div class="main">
+            <div class="left-side">
+                <img src="assets/head1.jpg" class="avatar">
+                <div class="new-element">
+                    <img src="gif/yaotou.gif" alt="摇头" class="small-gif">
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="music-player">
+                    <img class="music-poster" src="haibao/アイドル.jpg" alt="音乐海报">
+                    <span class="music-name">アイドル</span>
+                    <audio id="music" src="YOASOBI/アイドル - YOASOBI.mp3"></audio>
+                    <img class="play-button" src="assets/play-button.png" alt="播放按钮">
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                        <span class="time">00:00 / 00:00</span>
+                    </div>
+                    <div class="volume-button-container">
+                        <div class="volume-button">
+                            <img class="volume-icon" src="assets/speakers.png" alt="音量图标">
+                            <div class="volume-popup">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="navigation">
+                    <div class="circle">
+                        <a href="https://www.acgnsns.top/" target="_blank">
+                            <img src="assets/ACGN.png" class="icon">
+                        </a>
+                        <span class="name">
+                            <a href="https://www.acgnsns.top/" target="_blank">ACGN导航</a>
+                        </span>
+                    </div>
+                    <div class="circle">
+                        <a href="https://www.citydy.com/" target="_blank">
+                            <img src="assets/citydy.png" class="icon">
+                        </a>
+                        <span class="name">
+                            <a href="https://www.citydy.com/" target="_blank">城市电影</a>
+                        </span>
+                    </div>
+                    <div class="circle">
+                        <a href="https://www.flysheep6.com/" target="_blank">
+                            <img src="assets/flysheep.png" class="icon">
+                        </a>
+                        <span class="name">
+                            <a href="https://www.flysheep6.com/" target="_blank">资源避难所</a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="navigation">
+                    <div class="circle">
+                        <a href="https://www.wrwj.top/" target="_blank">
+                            <img src="assets/gpt.png" class="icon">
+                        </a>
+                        <span class="name">
+                            <a href="https://www.wrwj.top/" target="_blank">GPT镜像</a>
+                        </span>
+                    </div>
+                    <div class="circle">
+                        <a href="https://pixivic.com/" target="_blank">
+                            <img src="assets/pixivic.png" class="icon">
+                        </a>
+                        <span class="name">
+                            <a href="https://pixivic.com/" target="_blank">P站精选</a>
+                        </span>
+                    </div>
+                    <div class="circle">
+                        <a href="" target="_blank">
+                            <img src="assets/xya.png" class="icon">
+                        </a>
+                        <span class="name">
+                            <a href="" target="_blank">等新域名下来了就挂网盘</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="new-element">
+                    <img src="gif/tingge.gif" alt="听歌" class="small-gif">
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span class="text">这是Bromine为世界上最棒的偶像Hoshino Ai制作的应援兼个人导航网站！</span>
+        </div>
+    </div>
+
+    <script>
+        var audio = document.getElementById("music");
+        var playButton = document.querySelector(".play-button");
+        var progress = document.querySelector(".progress");
+        var volumeIcon = document.querySelector(".volume-icon");
+        var volumePopup = document.querySelector(".volume-popup");
+        var volumeSlider = document.querySelector(".volume-slider");
+
+        function playPauseToggle() {
+            if (audio.paused) {
+                playSong();
+            } else {
+                pauseSong();
+            }
+        }
+
+        function playSong() {
+            audio.play();
+            updatePlayButtonImage();
+        }
+
+        function pauseSong() {
+            audio.pause();
+            updatePlayButtonImage();
+        }
+
+        function updatePlayButtonImage() {
+            playButton.src = audio.paused ? "assets/play-button.png" : "assets/pause-button.png";
+        }
+
+        audio.addEventListener("timeupdate", function () {
+            var currentTime = audio.currentTime;
+            var duration = audio.duration;
+            var progressPercentage = (currentTime / duration) * 100;
+            progress.style.width = progressPercentage + "%";
+            document.querySelector(".time").textContent = formatTime(currentTime) + " / " + formatTime(duration);
+        });
+
+        volumeIcon.addEventListener("mouseenter", function () {
+            volumePopup.style.display = "block";
+        });
+
+        volumePopup.addEventListener("mouseleave", function () {
+            volumePopup.style.display = "none";
+        });
+
+        volumeSlider.addEventListener("input", function () {
+            audio.volume = volumeSlider.value;
+        });
+
+        playButton.addEventListener("click", playPauseToggle);
+
+        function formatTime(time) {
+            var minutes = Math.floor(time / 60);
+            var seconds = Math.floor(time % 60);
+            var formattedMinutes = ("0" + minutes).slice(-2);
+            var formattedSeconds = ("0" + seconds).slice(-2);
+            return formattedMinutes + ":" + formattedSeconds;
+        }
+    </script>
+    <div class="img"></div>
+    <script>
+        let img = document.querySelector('.img');
+        let deg = 0;
+        let imgx = 0;
+        let imgy = 0;
+        let imgl = 0;
+        let imgt = 0;
+        let y = 0;
+        let index = 0;
+
+        window.addEventListener('mousemove', function (event) {
+            imgx = event.clientX - img.offsetLeft - img.clientWidth / 2;
+            imgy = event.clientY - img.offsetTop - img.clientHeight / 2;
+            deg = (180 / Math.PI) * Math.atan2(imgy, imgx);
+            index = 0;
+            let x = event.clientX;
+            y = img.offsetLeft < x ? -180 : 0;
+        });
+
+        setInterval(() => {
+            img.style.transform = `rotate(${deg}deg) rotateY(${y}deg)`;
+            index++;
+            if (index < 50) {
+                imgl += imgx / 50;
+                imgt += imgy / 50;
+            }
+            img.style.left = imgl + 'px';
+            img.style.top = imgt + 'px';
+        }, 10);
+    </script>
+
+
+</body>
+
+</html>
